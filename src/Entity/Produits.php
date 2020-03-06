@@ -46,6 +46,11 @@ class Produits
      */
     private $categorie;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $image2;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -124,6 +129,23 @@ class Produits
     public function setCategorie(?Categories $categorie): self
     {
         $this->categorie = $categorie;
+
+        return $this;
+    }
+    
+    public function __toString()
+    {
+        return $this->titre;
+    }
+
+    public function getImage2(): ?string
+    {
+        return $this->image2;
+    }
+
+    public function setImage2(?string $image2): self
+    {
+        $this->image2 = $image2;
 
         return $this;
     }

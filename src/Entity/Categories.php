@@ -17,6 +17,15 @@ class Categories
      * @ORM\Column(type="integer")
      */
     private $id;
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $nom;
+
+
+
+
+
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Produits", mappedBy="categorie")
@@ -32,6 +41,24 @@ class Categories
     {
         return $this->id;
     }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(?string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+
+
+
+
+
 
     /**
      * @return Collection|Produits[]
@@ -63,4 +90,10 @@ class Categories
 
         return $this;
     }
+    public function __toString()
+    {
+        return $this->nom;
+    }
+
+    
 }

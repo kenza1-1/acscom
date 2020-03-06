@@ -10,7 +10,7 @@ use App\Entity\Produits;
 class ShowController extends AbstractController
 {
     /**
-     * @Route("/show/{id}", name="show")
+     * @Route("/categorie/{id}", name="show")
      */
     public function index($id)
     {

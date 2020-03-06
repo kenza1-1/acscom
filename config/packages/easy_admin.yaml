@@ -1,5 +1,13 @@
 easy_admin:
+
    entities:
        # List the entity class name you want to manage
-       - App\Entity\Categories      
-       - App\Entity\Produits     
+    Categories:
+        class: App\Entity\Categories
+        form:
+            fields:
+                - {property: 'nom'}
+
+
+    Produits:     
+        class: App\Entity\Produits     
