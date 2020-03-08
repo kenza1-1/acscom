@@ -14,7 +14,7 @@ class ProduitsController extends AbstractController
     public function index()
     {
         $repo = $this->getDoctrine()->getRepository(Produits::class);
-        $produits = $repo->findAll();
+        $produits = $repo->findByDisponibilite('1');
         return $this->render('produits/index.html.twig', [
             'controller_name' => 'ProduitsController',
             'produits' => $produits
@@ -30,6 +30,8 @@ class ProduitsController extends AbstractController
         $repo = $this->getDoctrine()->getRepository(Produits::class);
         $produit = $repo->find($id);
 
+        if(!$produit) throw $this->createNotFoundException("La page n'exite pas ");
+
         return $this->render('show/index.html.twig', [
             'controller_name' => 'ShowController',
             'produit' => $produit
@@ -44,6 +46,10 @@ class ProduitsController extends AbstractController
     {
         $repo = $this->getDoctrine()->getRepository(Produits::class);
         $produits = $repo->findByCategorie($categorie);
+
+        $repo = $this->getDoctrine()->getRepository(Produits::class);
+        $categorie = $repo->find($categorie);
+        if(!$categorie) throw $this->createNotFoundException("La page n'exite pas ");
 
         return $this->render('produits/index.html.twig', [
             //'controller_name' => 'ShowController',

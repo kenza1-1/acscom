@@ -27,7 +27,8 @@ class ProduitsRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('p')
             ->select('p')
-            ->andWhere('p.categorie = :categorie')
+            ->Where('p.categorie = :categorie')
+            // ->andWhere('p.disponibilite = 1')
             ->setParameter('categorie', $categorie)
             ->orderBy('p.id', 'ASC')
             // ->setMaxResults(10)
