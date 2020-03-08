@@ -7,9 +7,9 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\CategoriesRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\TvaRepository")
  */
-class Categories
+class Tva
 {
     /**
      * @ORM\Id()
@@ -17,16 +17,26 @@ class Categories
      * @ORM\Column(type="integer")
      */
     private $id;
+
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="float")
+     */
+    private $multiplicateur;
+
+    /**
+     * @ORM\Column(type="string", length=255)
      */
     private $nom;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Produits", mappedBy="categorie")
+     * @ORM\Column(type="float")
+     */
+    private $valeur;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Produits", mappedBy="Tva")
      */
     private $produits;
-
 
     public function __construct()
     {
@@ -38,23 +48,46 @@ class Categories
         return $this->id;
     }
 
+    public function getMultiplicateur(): ?float
+    {
+        return $this->multiplicateur;
+    }
+
+    public function setMultiplicateur(float $multiplicateur): self
+    {
+        $this->multiplicateur = $multiplicateur;
+
+        return $this;
+    }
+
     public function getNom(): ?string
     {
         return $this->nom;
     }
 
-    public function setNom(?string $nom): self
+    public function setNom(string $nom): self
     {
         $this->nom = $nom;
 
         return $this;
     }
 
+    public function getValeur(): ?float
+    {
+        return $this->valeur;
+    }
 
+    public function setValeur(float $valeur): self
+    {
+        $this->valeur = $valeur;
 
+        return $this;
+    }
 
-
-
+    public function __toString()
+    {
+        return $this->nom;
+    }
 
     /**
      * @return Collection|Produits[]
@@ -68,7 +101,7 @@ class Categories
     {
         if (!$this->produits->contains($produit)) {
             $this->produits[] = $produit;
-            $produit->setCategorie($this);
+            $produit->setTva($this);
         }
 
         return $this;
@@ -79,16 +112,11 @@ class Categories
         if ($this->produits->contains($produit)) {
             $this->produits->removeElement($produit);
             // set the owning side to null (unless already changed)
-            if ($produit->getCategorie() === $this) {
-                $produit->setCategorie(null);
+            if ($produit->getTva() === $this) {
+                $produit->setTva(null);
             }
         }
 
         return $this;
     }
-    public function __toString()
-    {
-        return $this->nom;
-    }
- 
 }

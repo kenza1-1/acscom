@@ -10,7 +10,7 @@ use App\Entity\Categories;
 class HomeController extends AbstractController
 {
     /**
-     * @Route("/home", name="home")
+     * @Route("/home1", name="home")
      */
     public function index()
     {
@@ -28,16 +28,25 @@ class HomeController extends AbstractController
          $repo = $this->getDoctrine()->getRepository(Produits::class);
          $produits = $repo->findAll();
 
+         $repo1 = $this->getDoctrine()->getRepository(Categories::class);
+         $categories = $repo1->findAll();
+
 
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
-            'produits' => $produits
+            'produits' => $produits,
+            'categories' => $categories
         ]);
 
 
     }
 
-    // public function base()
+    
+    // /**
+    //  * @Route("/home", name="categories")
+    //  */
+    
+    // public function categorie()
     // {
     //     // $produits= new Produits();
 
@@ -50,18 +59,19 @@ class HomeController extends AbstractController
     //     //          $em->persist($produits);
     //     //          $em->flush();
 
-         
-
     //      $repo = $this->getDoctrine()->getRepository(Categories::class);
     //      $categories = $repo->findAll();
 
 
-
     //     return $this->render('base.html.twig', [
-    //         // 'controller_name' => 'HomeController',
+    //         'controller_name' => 'HomeController',
     //         'categories' => $categories
     //     ]);
+
+
     // }
+
+
     
 }
 

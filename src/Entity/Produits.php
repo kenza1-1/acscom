@@ -32,24 +32,24 @@ class Produits
     private $prix;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $quantite;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $image;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Categories", inversedBy="produits")
      */
     private $categorie;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="boolean")
      */
-    private $image2;
+    private $disponibilite;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Tva", inversedBy="produits")
+     */
+    private $tva;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $image;
 
     public function getId(): ?int
     {
@@ -97,30 +97,6 @@ class Produits
       return number_format($this-> prix, 0, '', ' ');
     }
 
-    public function getQuantite(): ?int
-    {
-        return $this->quantite;
-    }
-
-    public function setQuantite(int $quantite): self
-    {
-        $this->quantite = $quantite;
-
-        return $this;
-    }
-
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(string $image): self
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
     public function getCategorie(): ?Categories
     {
         return $this->categorie;
@@ -138,15 +114,40 @@ class Produits
         return $this->titre;
     }
 
-    public function getImage2(): ?string
+    public function getDisponibilite(): ?bool
     {
-        return $this->image2;
+        return $this->disponibilite;
     }
 
-    public function setImage2(?string $image2): self
+    public function setDisponibilite(bool $disponibilite): self
     {
-        $this->image2 = $image2;
+        $this->disponibilite = $disponibilite;
 
         return $this;
     }
+
+    public function getTva(): ?tva
+    {
+        return $this->tva;
+    }
+
+    public function setTva(?tva $tva): self
+    {
+        $this->tva = $tva;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
 }

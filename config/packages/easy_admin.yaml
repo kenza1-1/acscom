@@ -1,13 +1,31 @@
 easy_admin:
+    entities:
+        Categories:
+            class: App\Entity\Categories
+            form:
+                fields:
+                    - {property: 'nom'}
+                       
+        Produits:     
+            class: App\Entity\Produits     
 
-   entities:
-       # List the entity class name you want to manage
-    Categories:
-        class: App\Entity\Categories
-        form:
-            fields:
-                - {property: 'nom'}
+        Utilisateurs:     
+            class: App\Entity\Utilisateurs 
+            
+        Tva:     
+            class: App\Entity\Tva  
+            form:
+                fields:
+                    - {property: 'multiplicateur'}
+                    - {property: 'nom'}
+                    - {property: 'valeur'}
+                    - {property: 'produits'}
 
-
-    Produits:     
-        class: App\Entity\Produits     
+    #                entities:
+    #    - App\Entity\Categories
+    #    - App\Entity\Tva
+    #    - App\Entity\Produits   
+    #    - App\Entity\Utilisateurs
+    #    - App\Entity\Media 
+      
+      
