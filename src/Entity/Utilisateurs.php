@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UtilisateursRepository")
@@ -35,8 +36,17 @@ class Utilisateurs
 
     /**
      * @ORM\Column(type="string", length=255)
+     *  * @Assert\Length(
+     * min=4,
+     * max=20,
+     * minMessage = "Votre mot de passe doit au moins avoir 8 caractéres",
+     * maxMessage = "Votre mot de passe ne doit pas faire plus de 20 caractéres"
+     * )
+     * @Assert\EqualTo(propertyPath="consfirm_password")
      */
     private $motdepasse;
+
+    public $confirm_password;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Commandes", mappedBy="utilisateur")
