@@ -42,14 +42,14 @@ class Produits
     private $disponibilite;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Tva", inversedBy="produits")
-     */
-    private $tva;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $image;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Tva", inversedBy="produits")
+     */
+    private $tva;
 
     public function getId(): ?int
     {
@@ -126,18 +126,6 @@ class Produits
         return $this;
     }
 
-    public function getTva(): ?tva
-    {
-        return $this->tva;
-    }
-
-    public function setTva(?tva $tva): self
-    {
-        $this->tva = $tva;
-
-        return $this;
-    }
-
     public function getImage(): ?string
     {
         return $this->image;
@@ -146,6 +134,18 @@ class Produits
     public function setImage(string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getTva(): ?tva
+    {
+        return $this->tva;
+    }
+
+    public function setTva(?tva $tva): self
+    {
+        $this->tva = $tva;
 
         return $this;
     }

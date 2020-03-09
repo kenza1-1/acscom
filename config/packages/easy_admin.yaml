@@ -19,7 +19,7 @@ easy_admin:
                     - {property: 'multiplicateur'}
                     - {property: 'nom'}
                     - {property: 'valeur'}
-                    - {property: 'produits'}
+                    
 
     #                entities:
     #    - App\Entity\Categories

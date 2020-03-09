@@ -34,7 +34,7 @@ class Tva
     private $valeur;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Produits", mappedBy="Tva")
+     * @ORM\OneToMany(targetEntity="App\Entity\Produits", mappedBy="tva")
      */
     private $produits;
 
@@ -119,4 +119,5 @@ class Tva
 
         return $this;
     }
+    
 }

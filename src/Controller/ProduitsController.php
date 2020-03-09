@@ -30,7 +30,7 @@ class ProduitsController extends AbstractController
         $repo = $this->getDoctrine()->getRepository(Produits::class);
         $produit = $repo->find($id);
 
-        if(!$produit) throw $this->createNotFoundException("La page n'exite pas ");
+        //if(!$produit) throw $this->createNotFoundException("La page n'exite pas ");
 
         return $this->render('show/index.html.twig', [
             'controller_name' => 'ShowController',
@@ -49,7 +49,7 @@ class ProduitsController extends AbstractController
 
         $repo = $this->getDoctrine()->getRepository(Produits::class);
         $categorie = $repo->find($categorie);
-        if(!$categorie) throw $this->createNotFoundException("La page n'exite pas ");
+        // if(!$categorie) throw $this->createNotFoundException("La page n'exite pas ");
 
         return $this->render('produits/index.html.twig', [
             //'controller_name' => 'ShowController',
