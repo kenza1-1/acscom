@@ -37,7 +37,7 @@
             <img class="card-img-top img-fluid  max-width: 100%" src="{{produit.image}}" alt="">
               <div class="card-body">
                   <h3 class="card-title">{{produit.titre}}</h3>
-                  <h4>{{produit.formatedPrice}}</h4>
+                  <h4>{{produit.formatedPrice | tva (produit.tva.multiplicateur)}}</h4>
                   <p class="card-text">{{produit.description}}</p>
                   <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
                   4.0 stars

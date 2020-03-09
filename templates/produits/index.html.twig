@@ -52,7 +52,7 @@
                   <h4 class="card-title">
                     <a href="#">Item One</a>
                   </h4>
-                  <h5>{{produit.prix}}</h5>
+                  <h5>{{produit.formatedPrice | tva (produit.tva.multiplicateur) }} £</h5>
                   <p class="card-text">{{produit.description}}}}</p>
                 </div>
                 <div class="card-footer">
