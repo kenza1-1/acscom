@@ -51,14 +51,20 @@
                 <a href="{{path('show',{'id':produit.id})}}"><img class="card-img-top" src="{{produit.image}}" width='300' height='250' alt=""></a>
                 <div class="card-body">
                   <h4 class="card-title">
-                    <a href="#">Item One</a>
+                    <a href="{{path('show',{'id':produit.id})}}">{{produit.titre}}</a>
                   </h4>
                   <h5>{{produit.formatedPrice | tva (produit.tva.multiplicateur) }} £</h5>
                   <p class="card-text">{{produit.description}}}}</p>
                 </div>
+
+                <form action="panier.php">
+                <select name="qte" class="spanl"></select>
+                
+                </form>
                 <div class="card-footer">
                   <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                 </div>
+                 {# <a href="{{path ('ajouter', {'id' : produit.id}) }}" class="btn btn-success">Ajouter au panier></a> #}
               </div>
             </div>
 

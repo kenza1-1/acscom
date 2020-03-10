@@ -3,17 +3,69 @@
 {% block title %}Connexion{% endblock %}
 {% block body %}
 
-<form class='mt-5 pt-5' action="{{ path('security_login') }}" method="post">
+{# <form class='mt-5 pt-5' action="{{ path('security_login') }}" method="post">
     <div class="form_group">
-        <input type="text" placeholder="Adresse email" class="form_control" required name="_username">
+        <input type="email" placeholder="Adresse email" class="form_control" required name="_username">
     </div>
 
     <div class="form_group">
         <input type="password" placeholder="Mot de passe" class="form_control" required name="_password">
     </div>
+
     <div class="formgroup">
-        <button type="submt" class="btn btn-success">Connexion</button>
+        <button type="submit" class="btn btn-success">Connexion</button>
     </div>
 
-</form>
+</form> #}
+
+
+<div class="bodyglobal mt-5 pt-5">
+	<div class="container h-100">
+		<div class="d-flex justify-content-center h-100">
+			<div class="user_card">
+				{# <div class="d-flex justify-content-center">
+					<div class="brand_logo_container">
+						<img src="https://cdn.freebiesupply.com/logos/large/2x/pinterest-circle-logo-png-transparent.png" class="brand_logo" alt="Logo">
+					</div>
+				</div> #}
+				<div class="d-flex justify-content-center form_container">
+					<form  class='mt-5 pt-5' action="{{ path('security_login') }}" method="post">
+						<div class="input-group mb-3">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-user"></i></span>
+							</div>
+							<input type="text" name="_username" class="form-control input_user" value="" placeholder="Votre email">
+						</div>
+						<div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-key"></i></span>
+							</div>
+							<input type="password" name="_password" class="form-control input_pass" value="" placeholder="Votre mot de passe">
+						</div>
+						<div class="form-group">
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" class="custom-control-input" id="customControlInline">
+								<label class="custom-control-label" for="customControlInline">Remember me</label>
+							</div>
+						</div>
+							<div class="d-flex justify-content-center mt-3 login_container">
+				 
+                    <button type="submit" class="btn btn-success">Connexion</button>
+
+				   </div>
+					</form>
+				</div>
+		
+				<div class="mt-4">
+					<div class="d-flex justify-content-center links">
+						Don't have an account? <a href="#" class="ml-2">Sign Up</a>
+					</div>
+					<div class="d-flex justify-content-center links">
+						<a href="#">Forgot your password?</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
 {% endblock %}

@@ -24,7 +24,7 @@ security:
                 check_path: security_login
             logout:
                 path: security_logout
-                # target: redirection lors de la deconnection
+                target: security_login  #redirection lors de la deconnection
                 
 
             # activate different ways to authenticate

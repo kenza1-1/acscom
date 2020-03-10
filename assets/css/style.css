@@ -10,4 +10,12 @@
     font-family: cursive;
     font-size: 25px;
   } */
-  
+  .bodyConnexion{
+    margin-top: 56px;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: #60a3bc !important;
+
+  }
+ 
