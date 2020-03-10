@@ -2,15 +2,22 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UtilisateursRepository")
+ * @UniqueEntity(
+ * fields= {"email"},
+ * message ="l'email indiqué est déja utilisé !"
+ * )
+ * 
  */
-class Utilisateurs
+class Utilisateurs implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -27,7 +34,7 @@ class Utilisateurs
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $prenom;
+    private $username;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -36,16 +43,18 @@ class Utilisateurs
 
     /**
      * @ORM\Column(type="string", length=255)
-     *  * @Assert\Length(
+     * @Assert\Length(
      * min=4,
      * max=20,
      * minMessage = "Votre mot de passe doit au moins avoir 8 caractéres",
      * maxMessage = "Votre mot de passe ne doit pas faire plus de 20 caractéres"
      * )
-     * @Assert\EqualTo(propertyPath="consfirm_password")
      */
-    private $motdepasse;
+    private $password;
 
+/**
+    * @Assert\EqualTo(propertyPath="password",message="les deux mots de passe ne sont pas identiques !")
+       */
     public $confirm_password;
 
     /**
@@ -81,14 +90,14 @@ class Utilisateurs
         return $this;
     }
 
-    public function getPrenom(): ?string
+    public function getUsername(): ?string
     {
-        return $this->prenom;
+        return $this->username;
     }
 
-    public function setPrenom(string $prenom): self
+    public function setUsername(string $username): self
     {
-        $this->prenom = $prenom;
+        $this->username = $username;
 
         return $this;
     }
@@ -105,14 +114,14 @@ class Utilisateurs
         return $this;
     }
 
-    public function getMotdepasse(): ?string
+    public function getPassword(): ?string
     {
-        return $this->motdepasse;
+        return $this->password;
     }
 
-    public function setMotdepasse(string $motdepasse): self
+    public function setPassword(string $password): self
     {
-        $this->motdepasse = $motdepasse;
+        $this->password = $password;
 
         return $this;
     }
@@ -178,4 +187,12 @@ class Utilisateurs
 
         return $this;
     }
+    public function eraseCredentials(){}
+
+    public function getSalt(){}
+
+    public function getRoles(){
+        return ['ROLE_USER'];
+    }
+
 }
