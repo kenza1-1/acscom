@@ -5,19 +5,23 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Produits;
+use App\Service\Cart\CartService;
+
 
 class ProduitsController extends AbstractController
 {
     /**
      * @Route("/", name="produits")
      */
-    public function index()
+    public function index(CartService $cartService)
     {
+        $cartWithData = $cartService->getFullCart();
         $repo = $this->getDoctrine()->getRepository(Produits::class);
         $produits = $repo->findByDisponibilite('1');
         return $this->render('produits/index.html.twig', [
             'controller_name' => 'ProduitsController',
-            'produits' => $produits
+            'produits' => $produits, 
+            'cart' => $cartWithData
             
         ]);
     }
