@@ -19,7 +19,7 @@ class SecurityController extends AbstractController
     /**
      * @Route("/inscription", name="security_registration")
      */
-    public function registration(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder)
+    public function registration(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder/* \Swift_Mailer $mailer*/)
     {
        $user = new Utilisateurs();
        $form = $this->createForm(RegistrationType::class, $user);
@@ -32,6 +32,25 @@ class SecurityController extends AbstractController
 
             $manager->persist($user);
             $manager->flush();
+            // on crée le message
+            // $message= (new \Swift_Message('Activation de votre compte'))
+            //     // On attribue l'expediteur
+            //     ->setForm('iderkenza11@gmail.com')
+            //     // On attribue le destinataire
+            //     ->setTo($user->getEmail())
+            //     // On crée le contenu
+            //     ->setBody(
+            //         $this->renderView(
+            //             'emails/activation.html.twig',['token'=> $user->getActivationToken()]
+            //         ),
+            //         'text/html'
+            //     )
+            // ;
+            // // On envoie l'email
+            // $mailer->send($message);
+
+
+
             return $this->redirectToRoute('security_login');
         }
 
