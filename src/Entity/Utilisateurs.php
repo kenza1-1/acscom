@@ -67,6 +67,11 @@ class Utilisateurs implements UserInterface
      */
     private $utilisateurAdresses;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $activation_token;
+
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
@@ -193,6 +198,18 @@ class Utilisateurs implements UserInterface
 
     public function getRoles(){
         return ['ROLE_USER'];
+    }
+
+    public function getActivationToken(): ?string
+    {
+        return $this->activation_token;
+    }
+
+    public function setActivationToken(?string $activation_token): self
+    {
+        $this->activation_token = $activation_token;
+
+        return $this;
     }
 
 }
