@@ -13,6 +13,10 @@
 
 <div class="container mb-4 mt-5 pt-5">
     <div class="row">
+    
+        {% for flashMessage in app.session.flashBag.get('success') %}
+            <div class="alert alert-success"> {{ flashMessage }}</div>
+        {% endfor %}
         <div class="col-12">
             <div class="table-responsive">
                 <table class="table table-striped">
@@ -28,6 +32,12 @@
                         </tr>
                     </thead>
                     <tbody>
+                    {% if produits|length == 0 %}
+                    <tr>
+                      <td colspan="4"><center> Aucun article dans votre panier</center> </td>
+                    </tr>
+                    {% endif %}
+
                         {% for produit in produits%}
                             <tr>
                                 <form action="{{path('ajouter' , {'id' : produit.id})}}" method='get'>
@@ -70,6 +80,7 @@
                             <td class="text-right">70,00 €</td>
                             <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
                         </tr> #}
+                    {% if produits|length != 0 %}
                         <tr>
                             <td></td>
                             <td></td>
@@ -94,6 +105,7 @@
                             <td><strong>Total TTC:</strong></td>
                             <td class="text-right"><strong>{{totalTTC}} €</strong></td>
                         </tr>
+                    {% endif %}    
                     </tbody>
                 </table>
             </div>
@@ -101,16 +113,18 @@
         <div class="col mb-2">
             <div class="row">
                 <div class="col-sm-12  col-md-6">
-                    <a href="{{path('produits')}}"><button class="btn btn-block btn-light">Continue Shopping</button></a>
+                    <a href="{{path('produits')}}"><button class="btn btn-block btn-primary">Continue Shopping</button></a>
                 </div>
-                <div class="col-sm-12 col-md-6 text-right">
-                    <button class="btn btn-lg btn-block btn-success text-uppercase">Valider mon panier</button>
-                </div>
+                {% if produits|length != 0 %}
+
+                    <div class="col-sm-12 col-md-6 text-right">
+                        <button class="btn btn-lg btn-block btn-success text-uppercase">Valider mon panier</button>
+                    </div>
+                {% endif %}    
             </div>
         </div>
     </div>
 </div>
-
 <!-- Footer -->
 <footer class="text-light">
     <div class="container">
