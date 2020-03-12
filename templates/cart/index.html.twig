@@ -7,12 +7,13 @@
     </div>
 
     {% if items |length > 0 %}
-        <table class="table">
+        <table class="table col-md-10 text-right">
             <thead>
                 <tr>
+                    <th></th>
                     <th>Produit</th>
-                    <th>Prix</th>
                     <th>Quantité</th>
+                    <th>Prix</th>
                     <th>Total</th>
                     <th></th>
                 </tr>
@@ -20,10 +21,10 @@
             <tbody>
                 {% for item in items %}
                     <tr>
-                        <td>{{ item.product.titre }}</td>
-                        <td>{{ item.product.prix }}</td>
+                        <td><img style="width: 10vw;" class="img-responsive" src="{{ item.product.image }}" alt=""></td>
+                        <td><a href="/categories/{{ item.product.id }}">{{ item.product.titre }}</a></td>
                         <td>{{ item.quantity }}</td>
-                        <td>{{ item.product.prix * item.quantity }}</td>
+                        <td>{{ item.product.prix * item.quantity }} €</td>
                         <td>
                             <a href="{{ path('cart_remove', {'id': item.product.id}) }}" class="btn btn-danger btn-sm">
                                 <i class="fas fa-trash"></i>
@@ -34,10 +35,10 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="3" class="text-right">Total : 
-                    </td>
-                    <td>{{ total }}</td>
-                    <td></td>
+                    <th colspan="4" class="text-right">Total : 
+                    </th>
+                    <th>{{ total }} €</th>
+                    <th></th>
                 </tr>
             </tfoot>
         </table>

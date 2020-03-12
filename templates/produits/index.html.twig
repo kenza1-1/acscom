@@ -40,7 +40,7 @@
     {{ render(controller("App\\Controller\\CategoriesController::index")) }}
       <!-- /.col-lg-3 -->
 
-      <div class="col-lg-9">
+      <div class="col-lg-8 offset-lg-2" style="margin-top: -25vh;">
 
 
         <div class="row mt-5">
@@ -83,10 +83,10 @@
   
   <!-- /.container -->
   <div>
-   {% for prout in cart %}
-        <p> {{ prout.product }} </p>
-        <p> {{ prout.quantity }} </p>
-        <p> {{ prout.product.prix }} </p>
+   {% for item in cart %}
+        <p> {{ item.product }} </p>
+        <p> {{ item.quantity }} </p>
+        <p> {{ item.product.prix }} </p>
 
     {% endfor %}
   </div>

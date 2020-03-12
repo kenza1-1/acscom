@@ -46,7 +46,7 @@ class ProduitsController extends AbstractController
      * @Route("/categorie/{categorie}", name="categorieproduits")
      */
 
-    public function categorie($categorie)
+    public function categorie($categorie, CartService $cartService)
     {
         $repo = $this->getDoctrine()->getRepository(Produits::class);
         $produits = $repo->findByCategorie($categorie);
@@ -54,10 +54,11 @@ class ProduitsController extends AbstractController
         $repo = $this->getDoctrine()->getRepository(Produits::class);
         $categorie = $repo->find($categorie);
         // if(!$categorie) throw $this->createNotFoundException("La page n'exite pas ");
-
+        $cartWithData = $cartService->getFullCart();
         return $this->render('produits/index.html.twig', [
             //'controller_name' => 'ShowController',
-            'produits' => $produits
+            'produits' => $produits,
+            'cart' => $cartWithData
         ]);
     }
 }
