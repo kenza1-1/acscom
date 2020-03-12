@@ -2,10 +2,11 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Produits;
 use App\Service\Cart\CartService;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
 class ProduitsController extends AbstractController
@@ -13,15 +14,23 @@ class ProduitsController extends AbstractController
     /**
      * @Route("/", name="produits")
      */
-    public function index(CartService $cartService)
+    public function index( Request $request )
     {
-        $cartWithData = $cartService->getFullCart();
+        $session= $request->getSession();
         $repo = $this->getDoctrine()->getRepository(Produits::class);
+
+        // $panier = $session->get('panier');
         $produits = $repo->findByDisponibilite('1');
+        if ($session->has('panier'))
+            $panier = $session->get('panier');
+            else
+            $panier = false;
+
         return $this->render('produits/index.html.twig', [
             'controller_name' => 'ProduitsController',
             'produits' => $produits, 
-            'cart' => $cartWithData
+            'panier' => $panier
+           // 'cart' => $cartWithData
             
         ]);
     }
@@ -29,16 +38,22 @@ class ProduitsController extends AbstractController
      /**
      * @Route("/categories/{id}", name="show")
      */
-    public function presentation($id)
+    public function presentation($id, Request $request )
     {
+        $session= $request->getSession();
         $repo = $this->getDoctrine()->getRepository(Produits::class);
         $produit = $repo->find($id);
 
-        //if(!$produit) throw $this->createNotFoundException("La page n'exite pas ");
+        if(!$produit) throw $this->createNotFoundException("La page n'exite pas ");
+        if ($session->has('panier'))
+            $panier = $session->get('panier');
+        else
+            $panier = false;
 
         return $this->render('show/index.html.twig', [
             'controller_name' => 'ShowController',
-            'produit' => $produit
+            'produit' => $produit,
+            'panier' => $panier
         ]);
     }
 
