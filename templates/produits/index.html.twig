@@ -69,9 +69,7 @@
                 {% if panier[produit.id] is not defined  %}
                 <a href="{{path('ajouter',{'id' :produit.id})}}" class="btn btn-success">Ajouter au panier></a>
                 {% else %}
-                  <div class='mt-5 pt-5'>
-                    <a href="{{path ('panier')}}" class="btn btn-primary">Le produit est déja dans votre panier</a>              
-                  </div>
+                  <a href="{{path ('panier')}}" class="btn btn-primary">Le produit est déja dans votre panier</a>              
                 {% endif %}    
               </div>
             </div>
