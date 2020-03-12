@@ -4,78 +4,37 @@
 {% block description %}{{produit.description}}{% endblock %}
 
 {% block body %}
- {# <div class="row">
 
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="{{produit.image}}" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">{{produit.titre}}</a>
-                </h4>
-                <h5>{{produit.formatedPrice}}</h5>
-                <p class="card-text">{{produit.description}}</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
-            </div>
-          </div> #}
-          {# //////////////////////////////////////// #}
-
-          
-
-     
-      <!-- /.col-lg-3 -->
 <div class="row">
-
-    
-      <div class="col-lg-6 mt-5 pt-5">
-       
-      <div class="col-lg-9">
-
-        <div class="card  center-block mt-5 pt-5">
-            <img class="card-img-top img-fluid  max-width: 100%" src="{{produit.image}}" alt="">
-              <div class="card-body">
-                  <h3 class="card-title">{{produit.titre}}</h3>
-                  <h4>{{produit.formatedPrice | tva (produit.tva.multiplicateur)}} £</h4>
-                  <p class="card-text">{{produit.description}}</p>
-                  <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
-                  4.0 stars
-              </div>
-              <hr>
-            <a href="#" class="btn btn-success">Acheter</a>
-             <hr>
-              <input class="form-control" value='1' type="number" ng-model="$scope.someNumber"/>
-              <a href="" class="btn btn-success">Ajouter au panier></a>
-                
-
-        </div>
-        <!-- /.card -->
-
-        {# <div class="card card-outline-secondary my-4">
-          <div class="card-header">
-            Product Reviews
-          </div>
+  <div class="col-lg-6 mt-5 pt-5">
+    <div class="col-lg-9">
+      <div class="card  center-block mt-5 pt-5">
+        <img class="card-img-top img-fluid  max-width: 100%" src="{{produit.image}}" alt="">
           <div class="card-body">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-            <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-            <hr>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-            <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-            <hr>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-            <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-            <hr>
-            <a href="#" class="btn btn-success">Leave a Review</a>
+              <h3 class="card-title">{{produit.titre}}</h3>
+              <h4>{{produit.formatedPrice | tva (produit.tva.multiplicateur)}} £</h4>
+              <p class="card-text">{{produit.description}}</p>
+              <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+              4.0 stars
           </div>
-        </div> #}
-        <!-- /.card -->
-
+          <hr>
+        <a href="#" class="btn btn-success">Acheter</a>
+        <hr>
+        
       </div>
-        </div>
-      <!-- /.col-lg-9 -->
+    </div>
+  </div>
+    <form action="{{path('ajouter',{'id' :produit.id})}}" class="col-lg-6 mt-5 pt-5" method="get">
+            <select name="qte" class="spanl">
+              {% for i in 1..10 %}
+                <option value="{{ i }}">{{ i }}</option>
+              {% endfor %}
+            </select>
 
-    
+            <div>
+              <button class="btn btn-primary">Ajouter au panier</button>              
+            </div>
+      </form>
+</div>
           
 {% endblock %}
