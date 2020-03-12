@@ -14,6 +14,14 @@ use Doctrine\Common\Persistence\ManagerRegistry;
  */
 class ProduitsRepository extends ServiceEntityRepository
 {
+    public function findArray($array){
+        $qb=$this->createQueryBuilder('u')
+        ->select('u')
+        ->where('u.id IN (:array)')
+        ->setParameter('array', $array);
+        return $qb->getQuery()->getResult();
+    }
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Produits::class);

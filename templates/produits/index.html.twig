@@ -64,7 +64,7 @@
                 <div class="card-footer">
                   <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                 </div>
-                 <a href="{{path ('cart_add', {'id' : produit.id}) }}" class="btn btn-success">Ajouter au panier></a>
+                 <a href="{{path('ajouter',{'id' :produit.id})}}" class="btn btn-success">Ajouter au panier></a>
               </div>
             </div>
 
@@ -82,14 +82,14 @@
 
   
   <!-- /.container -->
-  <div>
-   {% for item in cart %}
-        <p> {{ item.product }} </p>
-        <p> {{ item.quantity }} </p>
-        <p> {{ item.product.prix }} </p>
+  {# <div>
+   {% for prout in cart %}
+        <p> {{ prout.product }} </p>
+        <p> {{ prout.quantity }} </p>
+        <p> {{ prout.product.prix }} </p>
 
     {% endfor %}
-  </div>
+  </div> #}
   <!-- Footer -->
   <footer class="py-4 bg-dark ">
 
