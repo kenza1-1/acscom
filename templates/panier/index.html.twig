@@ -1,6 +1,10 @@
 {% extends 'base.html.twig' %}
 {% set totalHT = 0  %}
 {% set totalTTC = 0 %}
+{% set tva =0 %}
+
+
+
 
 
 {% block title %} Panier{% endblock %}
@@ -80,7 +84,7 @@
                             <td></td>
                             <td></td>
                             <td>TVA</td>
-                            <td class="text-right">6,90 €</td>
+                            <td class="text-right">{{(totalTTC)-(totalHT)}} €</td>
                         </tr>
                         <tr>
                             <td></td>
