@@ -1,6 +1,13 @@
 {% extends 'base.html.twig' %}
+{% set totalHT = 0  %}
+{% set totalTTC = 0 %}
+{% set tva =0 %}
 
-{% block title %}Hello PanierController!{% endblock %}
+
+
+
+
+{% block title %} Panier{% endblock %}
 
 {% block body %}
 
@@ -12,10 +19,11 @@
                     <thead>
                         <tr>
                             <th scope="col"> </th>
-                            <th scope="col">Product</th>
-                            <th scope="col">Available</th>
-                            <th scope="col" class="text-center">Quantity</th>
-                            <th scope="col" class="text-right">Price</th>
+                            <th scope="col">Produit</th>
+                            <th scope="col">disponibilié</th>
+                            <th scope="col" class="text-center">Quantité</th>
+                            <th scope="col" class="text-right">Prix unitaire</th>
+                            <th scope="col" class="text-right">Total HT</th>
                             <th> </th>
                         </tr>
                     </thead>
@@ -34,13 +42,17 @@
                                     {# <a href="{{ path ('supprimer', {'id' : produit.id})}}"><i class="icoon-trash"></i></a> #}
                                     </select>
                                     </td>
+                                    <td class="text-right">{{produit.prix}} €</td>
                                     <td class="text-right">{{produit.prix * panier[produit.id]}}€</td>
-                                    {# <td class="text-right">{{produit.prix * panier[produit.id]}}€</td> #}
                                     {# <a href="{{ path ('supprimer', {'id' : produit.id})}}"><i class=" fa fa-trash"></i></a>
                                     <td class="text-right"> <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td> #}
                                     <td><a href="{{ path ('supprimer', {'id' : produit.id})}}"><i class=" fa fa-trash"></i></a></td>
                                 </form>
                             </tr>
+                              {% set totalHT = totalHT + (produit.prix * panier[produit.id] ) %}
+                              {% set totalTTC = totalTTC + (produit.prix * panier[produit.id]) | tva (produit.tva.multiplicateur)   %}
+                              
+
                         {% endfor %}
                         {# <tr>
                             <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
@@ -63,24 +75,24 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td>Sub-Total</td>
-                            <td class="text-right">255,90 €</td>
+                            <td>Total HT :</td>
+                            <td class="text-right">{{totalHT}}€</td>
                         </tr>
                         <tr>
                             <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td>Shipping</td>
-                            <td class="text-right">6,90 €</td>
+                            <td>TVA</td>
+                            <td class="text-right">{{(totalTTC)-(totalHT)}} €</td>
                         </tr>
                         <tr>
                             <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td><strong>Total</strong></td>
-                            <td class="text-right"><strong>346,90 €</strong></td>
+                            <td><strong>Total TTC:</strong></td>
+                            <td class="text-right"><strong>{{totalTTC}} €</strong></td>
                         </tr>
                     </tbody>
                 </table>
@@ -92,7 +104,7 @@
                     <button class="btn btn-block btn-light">Continue Shopping</button>
                 </div>
                 <div class="col-sm-12 col-md-6 text-right">
-                    <button class="btn btn-lg btn-block btn-success text-uppercase">Checkout</button>
+                    <button class="btn btn-lg btn-block btn-success text-uppercase">Valider mon panier</button>
                 </div>
             </div>
         </div>
