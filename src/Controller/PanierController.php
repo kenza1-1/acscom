@@ -84,6 +84,8 @@ class PanierController extends AbstractController
         if(array_key_exists($id, $panier)){
             unset($panier[$id]);
             $session->set('panier',$panier);
+           $this->get('session')->getFlashBag()->add('success','Article supprimer avec succes');
+
         }
         return $this->redirect($this->generateUrl('panier'));
 
