@@ -38,16 +38,20 @@ class Utilisateurs implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Regex(
+     *      "/^([a-z0-9_\.\+-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/",
+     *      message="L'adresse mail doit prendre la forme suivante : exemple@exemple.com"
+     * )
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(
-     * min=4,
-     * max=20,
-     * minMessage = "Votre mot de passe doit au moins avoir 8 caractéres",
-     * maxMessage = "Votre mot de passe ne doit pas faire plus de 20 caractéres"
+     *      min=4,
+     *      max=20,
+     *      minMessage = "Votre mot de passe doit au moins avoir 8 caractéres",
+     *      maxMessage = "Votre mot de passe ne doit pas faire plus de 20 caractéres"
      * )
      */
     private $password;
