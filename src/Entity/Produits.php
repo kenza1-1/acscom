@@ -51,6 +51,11 @@ class Produits
      */
     private $tva;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $quantity;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -146,6 +151,18 @@ class Produits
     public function setTva(?tva $tva): self
     {
         $this->tva = $tva;
+
+        return $this;
+    }
+
+    public function getQuantity(): ?int
+    {
+        return $this->quantity;
+    }
+
+    public function setQuantity(?int $quantity): self
+    {
+        $this->quantity = $quantity;
 
         return $this;
     }

@@ -2,9 +2,10 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
 use App\Service\Cart\CartService;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CartController extends AbstractController {
 
@@ -12,7 +13,7 @@ class CartController extends AbstractController {
      * @Route("/cart", name="cart_index")
      */
     public function index(CartService $cartService) {
-        
+        // dd($cartService->getFullCart());
         return $this->render('cart/index.html.twig', [
             'items' => $cartService->getFullCart(), 
             'total' => $cartService->getTotal()
@@ -40,4 +41,15 @@ class CartController extends AbstractController {
 
         return $this->redirectToRoute("cart_index");
     }
+
+    /**
+     * @Route("/panier/modifQuantity/{id}", name="cart_modif")
+     */
+    public function modifQuantity($id, CartService $cartService, Session $session){
+
+        $cartService->modifQuantity($id,intval($_POST['quantity']));
+        
+        return $this->redirectToRoute("cart_index");
+    }
+
 }

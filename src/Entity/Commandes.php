@@ -19,7 +19,7 @@ class Commandes
     /**
      * @ORM\Column(type="boolean")
      */
-    private $valider;
+    private $valider = false;
 
     /**
      * @ORM\Column(type="datetime")
@@ -29,7 +29,7 @@ class Commandes
     /**
      * @ORM\Column(type="integer")
      */
-    private $reference;
+    private $reference = 0;
 
     /**
      * @ORM\Column(type="array")
@@ -40,6 +40,14 @@ class Commandes
      * @ORM\ManyToOne(targetEntity="App\Entity\utilisateurs", inversedBy="commandes")
      */
     private $utilisateur;
+
+    public function __construct()
+    {
+       
+
+        $this->date = new \DateTime();
+
+    }
 
     public function getId(): ?int
     {

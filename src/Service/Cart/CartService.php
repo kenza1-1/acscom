@@ -43,6 +43,7 @@ class CartService {
     }
 
     public function getFullCart() : array {
+        // $this->session->clear();
         $cart = $this->session->get('cart', []);
 
         $cartWithData = [];
@@ -65,5 +66,12 @@ class CartService {
         }
 
         return $total;
+    }
+
+    public function modifQuantity(int $id, int $quantity){
+        $cart = $this->session->get('cart',[]); 
+        
+        $cart[$id] = $quantity;
+        $this->session->set('cart', $cart);
     }
 }

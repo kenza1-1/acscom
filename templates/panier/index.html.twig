@@ -56,7 +56,7 @@
                                     <td class="text-right">{{produit.prix * panier[produit.id]}}€</td>
                                     {# <a href="{{ path ('supprimer', {'id' : produit.id})}}"><i class=" fa fa-trash"></i></a>
                                     <td class="text-right"> <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td> #}
-                                    <td><a href="{{ path ('supprimer', {'id' : produit.id})}}"><i class=" fa fa-trash"></i></a></td>
+                                    <td><a href="{{ path ('cart_remove', {'id' : produit.id})}}"><i class=" fa fa-trash"></i></a></td>
                                 </form>
                             </tr>
                               {% set totalHT = totalHT + (produit.prix * panier[produit.id] ) %}
@@ -118,7 +118,7 @@
                 {% if produits|length != 0 %}
 
                     <div class="col-sm-12 col-md-6 text-right">
-                        <button class="btn btn-lg btn-block btn-success text-uppercase">Valider mon panier</button>
+                        <a href="{{path('command')}}"><button class="btn btn-block btn-primary">Valider le Panier</button></a>
                     </div>
                 {% endif %}    
             </div>
