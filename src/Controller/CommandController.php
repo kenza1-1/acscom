@@ -23,6 +23,8 @@ class CommandController extends AbstractController
         $manager->flush();
         return $this->render('command/index.html.twig', [
             'controller_name' => 'CommandController',
+            'items' => $cartService->getFullCart(), 
+            'total' => $cartService->getTotal()
         ]);
     }
 }
