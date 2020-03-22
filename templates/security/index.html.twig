@@ -3,24 +3,25 @@
 {% block title %}Inscription{% endblock %}
 
 {% block body %}
-<style>
+{# <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+</style> #}
 
-<div class="example-wrapper mt-5 pt-5">
+{# <div class="example-wrapper mt-5 pt-5">
   <div class="container">
     <h1>Formulaire d'Inscription</h1>
     {{ form_start(form) }}
-    <div class="form-group">
-      <div>
+    <div class="form-group input-group">
+      <div class="input-group-prepend">
+              <span class="input-group-text"> <i class="fa fa-user"></i> </span>
         {{form_row(form.nom, {'attr': {'placeholder':'Votre nom', 'class':'form-control'}})}}
       </div>
     </div>
 
     <div class="form-group">
       <div>
-        {{form_row(form.username, {'attr': {'placeholder':'Votre prénom', 'class':'form-control'}})}}  
+        {{form_row(form.username, {'attr': {'placeholder':'Votre pseudo', 'class':'form-control'}})}}  
       </div>
     </div>
 
@@ -45,6 +46,61 @@
     <button type="submit" class="btn btn-success">Inscription</button>
     {{form_end(form)}}
   </div>
-</div>
+</div> #}
 
+<div class="card bg-light">
+  <article class="card-body mx-auto" style="max-width: 400px; margin-top: 10vh">
+    <h4 class="card-title mt-3 text-center">Create Account</h4>
+    <p class="text-center">Get started with your free account</p>
+    <p>
+      <a href="" class="btn btn-block btn-twitter"> <i class="fab fa-twitter"></i>   Login via Twitter</a>
+      <a href="" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i>   Login via facebook</a>
+    </p>
+    <p class="divider-text">
+          <span class="bg-light">OR</span>
+      </p>
+    {{ form_start(form) }}
+      <form>
+
+            <!-- form-group// -->
+        <div class="form-group input-group">
+          <div class="input-group-prepend">
+              <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+          </div>
+            {{form_row(form.nom, {'attr': {'placeholder':'Name', 'class':'form-control'}})}}
+          </div>
+                <!-- form-group// -->
+          <div class="form-group input-group">
+          <div class="input-group-prepend">
+              <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+          </div>
+            {{form_row(form.username, {'attr': {'placeholder':'Nickname', 'class':'form-control'}})}}  
+          </div>
+          <!-- form-group// -->
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+          </div>
+            {{form_row(form.email, {'attr': {'placeholder':'Email', 'class':'form-control'}})}}  
+          </div> <!-- form-group end.// -->
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+          </div>
+            {{form_row(form.password, {'attr': {'placeholder':'Password', 'class':'form-control'}})}}  
+          </div> <!-- form-group// -->
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+          </div>
+            {{form_row(form.confirm_password, {'attr': {'placeholder':'Confirm Password', 'class':'form-control'}})}}  
+          </div> <!-- form-group// -->                                      
+          <div class="form-group">
+              <button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
+          {{form_end(form)}}
+        </div> <!-- form-group// -->      
+        <p class="text-center">Have an account? <a href="{{path ('security_login')}}">Log In</a> </p>                                                                 
+      </form>
+  </article>
+</div>
 {% endblock %}
