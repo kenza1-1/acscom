@@ -40,7 +40,7 @@
     {{ render(controller("App\\Controller\\CategoriesController::index")) }}
       <!-- /.col-lg-3 -->
 
-      <div class="col-lg-8 offset-lg-2" style="margin-top: -25vh;">
+      <div class="col-lg-8 offset-lg-2 position-relative">
 
 
         <div class="row mt-5">
@@ -58,7 +58,35 @@
                 </div>
 
                 <form action="panier.php">
-                <select name="qte" class="spanl"></select>
+                
+                </form>
+                <div class="card-footer">
+                  <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                </div>
+                    <a href="{{path('show',{'id':produit.id})}}" class="btn btn-promary">Plus d'infos</a>
+              
+                {# {% if panier[produit.id] is not defined  %} #}
+                <a href="{{path('cart_add',{'id' :produit.id})}}" class="btn btn-success">Ajouter au panier></a>
+                {# {% else %} #}
+                  {# <a href="{{path ('panier')}}" class="btn btn-primary">Le produit est déja dans votre panier</a>               #}
+                {# {% endif %}     #}
+              </div>
+            </div>
+
+          {% endfor %}{% for produit in produits %}
+
+            <div class="col-lg-4 col-md-6 mb-4 ">
+              <div class="card h-100">
+                <a href="{{path('show',{'id':produit.id})}}"><img class="card-img-top" src="{{produit.image}}" width='300' height='250' alt=""></a>
+                <div class="card-body">
+                  <h4 class="card-title">
+                    <a href="{{path('show',{'id':produit.id})}}">{{produit.titre}}</a>
+                  </h4>
+                  <h5>{{produit.formatedPrice | tva (produit.tva.multiplicateur) }} £</h5>
+                  <p class="card-text">{{produit.description}}}}</p>
+                </div>
+
+                <form action="panier.php">
                 
                 </form>
                 <div class="card-footer">
@@ -96,36 +124,6 @@
 
     {% endfor %}
   </div> #}
-  <!-- Footer -->
-  <footer class="py-4 bg-dark ">
-
-    <div class='d-flex flex-wrap'>
-    
-     <div class='col-lg-4 foot'>
-        <p class=" text-white"> Informations</p>
-        <div class="list-group">
-         <a href="">CGU</a>
-         <a href="">Mentions légales</a>
-        </div>
-      </div>
-
-      <div class='col-lg-4 foot'>
-        <p class="text-white">Copyright &copy; Groupe Acs {{ "now"|date('Y') }}</p>
-      </div>
-
-      <div class='col-lg-4 foot'>
-        <p class=" text-white">Nous contacter</p>
-        <div class="list-group">
-         <a href="">Tel</a>
-         <a href="">Fax</a>
-        </div>
-      </div>
-
-
-    </div>
-   
-    <!-- /.container -->
-  </footer>
 </div>
 
 
