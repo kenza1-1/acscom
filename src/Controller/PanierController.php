@@ -9,6 +9,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PanierController extends AbstractController
 {
+    public function menuAction(Request $request){
+        $session= $request->getSession();
+        if(!$session->has('panier'))
+        $produits=0;
+        else
+        $produits=count($session->get('panier'));
+        return $this->render('moduleUtilisateur/index.html.twig', [
+            'produits' =>$produits,
+            
+        ]);
+        
+
+
+
+    }
     /**
      * @Route("/panier", name="panier")
      */
@@ -39,7 +54,7 @@ class PanierController extends AbstractController
     {
         $session= $request->getSession();
         
-        if(!$session->has('panier')) $session->set('panier',array());
+        if(!$session->has('panier')) $session->set('panier',array()); 
         $panier = $session->get('panier');
     
         if(array_key_exists($id,$panier)){

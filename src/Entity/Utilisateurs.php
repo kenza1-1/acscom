@@ -27,12 +27,21 @@ class Utilisateurs implements UserInterface
     private $id;
 
     /**
+     * * *@Assert\Regex(
+     * pattern = "/^[a-zA-Z0-9]+$/i",
+     * htmlPattern = "^[a-zA-Z0-9]+$"
+     * )
      * @ORM\Column(type="string", length=255)
      */
     private $nom;
 
     /**
+     * *@Assert\Regex(
+     * pattern = "/^[a-zA-Z0-9]+$/i",
+     * htmlPattern = "^[a-zA-Z0-9]+$"
+     * )
      * @ORM\Column(type="string", length=255)
+     * 
      */
     private $username;
 

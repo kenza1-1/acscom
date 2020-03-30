@@ -1,0 +1,11 @@
+ <li class="nav-item">
+    <a href="{{ path('panier') }}">
+        {% if produits ==0 %}
+        Aucun profuit dans votre panier
+        {% elseif produits ==1 %}
+        1 produit dans votre panier 
+        {% else %}
+        {{produits}} produits dans votre panier
+        {% endif %}
+    </a>
+ </li>

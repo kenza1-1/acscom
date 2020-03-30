@@ -31,13 +31,14 @@
     {# </div>    #}
 {# </div> #} 
 
-<div class="global">
+<div class="global pt-5 mt-5">
  
 
   <!-- Page Content -->
-    <div class="row">
+    <div class="d-flex flex-wrap pt-5 mt-5">
 
     {{ render(controller("App\\Controller\\CategoriesController::index")) }}
+     
       <!-- /.col-lg-3 -->
 
       <div class="col-lg-9">
@@ -68,8 +69,11 @@
               
                 {% if panier[produit.id] is not defined  %}
                 <a href="{{path('ajouter',{'id' :produit.id})}}" class="btn btn-success">Ajouter au panier></a>
+               
                 {% else %}
-                  <a href="{{path ('panier')}}" class="btn btn-primary">Le produit est déja dans votre panier</a>              
+                  <div class='mt-5 pt-5'>
+                    <a href="{{path ('panier')}}" class="btn btn-primary">Le produit est déja dans votre panier</a>              
+                  </div>
                 {% endif %}    
               </div>
             </div>
@@ -99,7 +103,7 @@
   <!-- Footer -->
   <footer class="py-4 bg-dark ">
 
-    <div class='row'>
+    <div class='d-flex flex-wrap'>
     
      <div class='col-lg-4 foot'>
         <p class=" text-white"> Informations</p>
@@ -128,7 +132,7 @@
   </footer>
 </div>
 
-
+{# ///////////////////////////////////////////////////////////////////////////// #}
 
 
 

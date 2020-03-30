@@ -37,3 +37,14 @@ services:
     #   tags:
     #     - { name : twig.extension}
 
+    # redirectionListener:
+    #     class: App\EventListener\ExceptionListener
+    #     arguments: [ @=service_container, @=session]
+    #     tags:
+    #          - { name: kernel.event_listener, event: kernel.request, method: onkernelRequest }
+
+
+
+    # App\EventListener\ExceptionListener:
+    #     tags:
+    #          - { name: kernel.event_listener, event: kernel.request, method: onkernelRequest }
