@@ -32,6 +32,10 @@ class Utilisateurs implements UserInterface
      * htmlPattern = "^[a-zA-Z0-9]+$"
      * )
      * @ORM\Column(type="string", length=255)
+     * * @Assert\Regex(
+     *      "/^[a-z _-]{3,16}$/",
+     *      message="Le nom peut comprendre des chiffres, des lettres, _ et - et doit faire entre 3 et 16 caractères."
+     * )
      */
     private $nom;
 
@@ -41,29 +45,38 @@ class Utilisateurs implements UserInterface
      * htmlPattern = "^[a-zA-Z0-9]+$"
      * )
      * @ORM\Column(type="string", length=255)
+<<<<<<< HEAD
      * 
+=======
+     * @Assert\Regex(
+     *      "/^[a-z0-9_-]{3,16}$/",
+     *      message="Le nom d'utilisateur peut comprendre des chiffres, des lettres, _ et - et doit faire entre 3 et 16 caractères."
+     * )
+>>>>>>> e790ceb230970f993f6de640f0511a862194b14c
      */
     private $username;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Regex(
+     *      " /^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/ ",
+     *      message="L'adresse mail doit prendre la forme suivante : exemple@exemple.com"
+     * )
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Length(
-     * min=4,
-     * max=20,
-     * minMessage = "Votre mot de passe doit au moins avoir 8 caractéres",
-     * maxMessage = "Votre mot de passe ne doit pas faire plus de 20 caractéres"
+     * @Assert\Regex(
+     *      "/(?=(.*[0-9]))((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))^.{8,}$/", 
+     *      message="Exemple de mot de passe : Martinet1"
      * )
      */
     private $password;
 
-/**
+    /**
     * @Assert\EqualTo(propertyPath="password",message="les deux mots de passe ne sont pas identiques !")
-       */
+    */
     public $confirm_password;
 
     /**

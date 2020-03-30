@@ -1,0 +1,119 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commande{% endblock %}
+
+{% block body %}
+    <div class="row" style="margin-top: 5rem;">
+       
+        <div class="col-md-6">
+            <div class="card">
+            <h5 class="card-header">Adresse de livraison</h5>
+            <div class="card-body text-center">
+                <h5 class="">Veuillez selectionnez l'adresse de livraison :</h5>
+                <input type="radio" checked>
+                <label for="">Adresse de livraison n°1 (par défaut)</label><br>
+                <input type="radio">
+                <label for="">Adresse de livraison n°2</label><br>
+                <input type="radio">
+                <label for="">Adresse de livraison n°3</label><br>
+                <h5 class="">... ou ajouter une adresse</h5>
+                <input type="text">
+                <a href="#" class="btn btn-primary">Ajouter l'adresse</a>
+
+            </div>
+            </div>        
+        </div>
+
+        <div class="table col-md-6">
+            <div class="card">
+            <h5 class="card-header">Moyen de paiement</h5>
+            <div class="card-body text-center">
+                <h5 class="">Veuillez selectionnez le moyen de paiement :</h5>
+                <input type="radio" checked>
+                <label for="">Moyen de paiement n°1 (par défaut)</label><br>
+                <input type="radio">
+                <label for="">Moyen de paiement n°2</label><br>
+                <input type="radio">
+                <label for="">Moyen de paiement n°3</label><br>
+                <h5 class="">... ajouter une nouvelle carte</h5>
+                <input type="text">
+                <a href="#" class="btn btn-primary">Ajouter la carte</a>
+
+                {# <label for="">Numéro de la carte bleue</label>
+                <input type="text">
+                <br>
+                <label class="">Cryptogramme</label>
+                <input type="text"><br>
+                <a href="#" class="btn btn-primary mt-2 mb-2">Donner vos sous !</a> #}
+            </div>
+            </div>        
+        </div>
+    </div>
+    <div class="row">
+        
+        {% if items |length > 0 %}
+            <table class="offset-md-2 col-md-8 text-center">
+                <thead>
+                    <tr>
+                        <th><h3 class="pb-5">Résumé de la commande</h1></th>
+                        <th>Produit</th>
+                        <th>Quantité</th>
+                        <th>Prix</th>
+                        <th>Total</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+                        <tr>
+                            <td><img style="width: 10vw;" class="img-responsive" src="{{ item.product.image }}" alt=""></td>
+                            <td><a href="/categories/{{ item.product.id }}">{{ item.product.titre }}</a></td>
+                                    <td>
+                                        <form method="POST" action="{{ path('cart_modif', {'id' : item.product.id}) }}"> 
+                                            <select name="quantity" class="" id="inlineFormCustomSelect">
+                                                <option selected> {{ item.quantity }}</option>
+                                                {% set numberItems = item.product.quantity %}
+
+                                                {% if numberItems <= 10 %}
+                                                {% for i in 1..item.product.quantity %}
+                                                <option value="{{i}}">{{i}}</option>
+                                                {% endfor %}
+                                                {% else %}
+                                                    {% for i in 1..10 %}
+                                                <option value="{{i}}">{{i}}</option>
+                                                {% endfor %}
+                                                {% endif %}
+                                            
+                                                
+                                            </select>
+                                            <button type="submit" class="btn btn-dark btn-sm">Modifier</button>
+                                        </form> 
+                                    </td>
+                            <td>{{ item.product.prix * item.quantity }} €</td>
+                            <td>
+                                <a href="{{ path('cart_remove', {'id': item.product.id}) }}" class="btn btn-danger btn-sm">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="4" class="text-right">Total : 
+                        </th>
+                        <th>{{ total }} €</th>
+                        <th><a href="#" class="btn btn-primary justify-content-center">Valider la commande</a></th>
+
+
+                    </tr>
+                </tfoot>
+            </table>
+        {% else %}
+            <div>
+                <h1>Votre Panier est vide !</h1>
+            </div>
+        {% endif %}
+    </div>
+
+{% endblock %}

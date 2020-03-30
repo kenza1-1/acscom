@@ -28,18 +28,25 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
+                            <a class="nav-link" href="{{path('about')}}">A propos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Services</a>
                         </li>
+<<<<<<< HEAD
+=======
+                        <li class="nav-item">
+                            <a class="nav-link" href="/cart">Panier</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="{{path('security_register')}}">Inscription</a>
+                        </li>
+
+>>>>>>> e790ceb230970f993f6de640f0511a862194b14c
                         {% if not app.user %}
                             <li class="nav-item">
                                 <a class="nav-link" href="{{path('security_login')}}">Connexion</a>
                             </li>
-                             <li class="nav-item">
-                                <a class="nav-link " href="{{path('security_register')}}">Inscription</a>
-                             </li>
                         {% else %}
                             <li class="nav-item">
                                 <a class="nav-link" href="{{path('security_logout')}}">Déconnexion</a>
@@ -55,15 +62,46 @@
             </div>
         </nav>
         {% block body %}{% endblock %}
-      
+ 
         {% block javascripts %}
         
          {# {{ encore_entry_script_tags('home') }} #}
 
-        
-        {% endblock %}
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        
+        {% endblock %}
+               <!-- Footer -->
+        <footer class="py-4 bg-dark footer " style="position: relative; bottom: 0; right: 0; left: 0; top:50vh;">
+
+            <div class='d-flex flex-wrap'>
+            
+                <div class='col-lg-4 foot'>
+                    <p class=" text-white"> Informations</p>
+                    <div class="list-group">
+                    <a href="">CGU</a>
+                    <a href="">Mentions légales</a>
+                    </div>
+                </div>
+
+                <div class='col-lg-4 foot'>
+                    <p class="text-white">Copyright &copy; Groupe Acs {{ "now"|date('Y') }}</p>
+                </div>
+
+                <div class='col-lg-4 foot'>
+                    <p class=" text-white">Nous contacter</p>
+                    <div class="list-group">
+                    <a href="">Tel</a>
+                    <a href="">Fax</a>
+                    </div>
+                </div>
+
+
+            </div>
+        
+            <!-- /.container -->
+        </footer>
     </body>
+    
 </html>

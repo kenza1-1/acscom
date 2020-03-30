@@ -7,12 +7,13 @@
     </div>
 
     {% if items |length > 0 %}
-        <table class="table">
+        <table class="table col-md-10 text-right">
             <thead>
                 <tr>
+                    <th></th>
                     <th>Produit</th>
-                    <th>Prix</th>
                     <th>Quantité</th>
+                    <th>Prix</th>
                     <th>Total</th>
                     <th></th>
                 </tr>
@@ -20,10 +21,30 @@
             <tbody>
                 {% for item in items %}
                     <tr>
-                        <td>{{ item.product.titre }}</td>
-                        <td>{{ item.product.prix }}</td>
-                        <td>{{ item.quantity }}</td>
-                        <td>{{ item.product.prix * item.quantity }}</td>
+                        <td><img style="width: 10vw;" class="img-responsive" src="{{ item.product.image }}" alt=""></td>
+                        <td><a href="/categories/{{ item.product.id }}">{{ item.product.titre }}</a></td>
+                                <td>
+                                    <form method="POST" action="{{ path('cart_modif', {'id' : item.product.id}) }}"> 
+                                        <select name="quantity" class="" id="inlineFormCustomSelect">
+                                            <option selected> {{ item.quantity }}</option>
+                                            {% set numberItems = item.product.quantity %}
+
+                                            {% if numberItems <= 10 %}
+                                             {% for i in 1..item.product.quantity %}
+                                            <option value="{{i}}">{{i}}</option>
+                                            {% endfor %}
+                                            {% else %}
+                                                 {% for i in 1..10 %}
+                                            <option value="{{i}}">{{i}}</option>
+                                            {% endfor %}
+                                            {% endif %}
+                                           
+                                            
+                                        </select>
+                                        <button type="submit" class="btn btn-dark btn-sm">Modifier</button>
+                                    </form> 
+                                </td>
+                        <td>{{ item.product.prix * item.quantity }} €</td>
                         <td>
                             <a href="{{ path('cart_remove', {'id': item.product.id}) }}" class="btn btn-danger btn-sm">
                                 <i class="fas fa-trash"></i>
@@ -34,13 +55,15 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="3" class="text-right">Total : 
-                    </td>
-                    <td>{{ total }}</td>
-                    <td></td>
+                    <th colspan="4" class="text-right">Total : 
+                    </th>
+                    <th>{{ total }} €</th>
+                    <th></th>
                 </tr>
+
             </tfoot>
         </table>
+                <a href="{{ path ('command') }}" type="button" class="btn btn-primary btn-block">Valider la commande sur votre écran 21/9</a>
     {% else %}
         <div>
             <h1>Votre Panier est vide !</h1>
