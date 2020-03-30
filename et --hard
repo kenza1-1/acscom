@@ -1,0 +1,28 @@
+[33m627a63d[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m HEAD@{0}: reset: moving to HEAD
+[33m627a63d[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m HEAD@{1}: reset: moving to HEAD
+[33m627a63d[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m HEAD@{2}: reset: moving to HEAD
+[33m627a63d[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m HEAD@{3}: commit (merge): Affichage de la quantité du panier dans la page home
+[33mba20255[m HEAD@{4}: commit: Affichage de la quantité du panier dans la page home
+[33m92acb47[m HEAD@{5}: commit: alert success lors de la supprission de l ' article dans le panier
+[33m3bd88ba[m HEAD@{6}: pull: Fast-forward
+[33m9f3bae3[m HEAD@{7}: commit: Dire si le produit est deja dans le panier
+[33m0e7da80[m HEAD@{8}: commit: somme de la tva sur tout les produits
+[33m7076ddf[m HEAD@{9}: pull: Fast-forward
+[33m8b3b72e[m HEAD@{10}: commit: Affichage du total a payer avec et sans ttc
+[33maeb780f[m HEAD@{11}: commit: gestion du panier avec les quantité
+[33m01a7af0[m HEAD@{12}: commit: correction du petit bug
+[33ma3b3946[m HEAD@{13}: pull: Merge made by the 'recursive' strategy.
+[33m3bf5bfa[m HEAD@{14}: commit: add emails
+[33m0930252[m HEAD@{15}: commit: ajout de l'inscription
+[33m2998513[m HEAD@{16}: commit: ajout du style sur la page se connecter
+[33mb355744[m HEAD@{17}: commit: creation de l'inscription et l'authentification des utilisateurs
+[33m8294864[m HEAD@{18}: pull: Merge made by the 'recursive' strategy.
+[33m2784d13[m HEAD@{19}: commit: ajout d'inscription
+[33mc583ea3[m HEAD@{20}: commit: affichage des prix en ttc
+[33m0e94a20[m HEAD@{21}: commit: ajout de la tva sur les produits
+[33m193563d[m HEAD@{22}: commit: ajout d affichage de produit si diponible et selon leur categorie et creation des entity avec leur relations
+[33mf2d4393[m HEAD@{23}: commit: ajout l'affichage de produit par leur categorie et creation des entity avec leur relation
+[33m6a43c9f[m HEAD@{24}: commit: ajout d'espace admin
+[33m41d05ef[m HEAD@{25}: pull: Fast-forward
+[33mb7f17d9[m HEAD@{26}: commit: ajout home
+[33mef4ff80[m HEAD@{27}: commit (initial): Add initial set of files
