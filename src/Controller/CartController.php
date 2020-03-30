@@ -47,7 +47,8 @@ class CartController extends AbstractController {
      */
     public function modifQuantity($id, CartService $cartService, Session $session){
 
-        $cartService->modifQuantity($id,intval($_POST['quantity']));
+
+        $cartService->modifQuantity($id,intval($_GET['quantity']));
         
         return $this->redirectToRoute("cart_index");
     }

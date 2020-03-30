@@ -24,8 +24,8 @@
                         <td><img style="width: 10vw;" class="img-responsive" src="{{ item.product.image }}" alt=""></td>
                         <td><a href="/categories/{{ item.product.id }}">{{ item.product.titre }}</a></td>
                                 <td>
-                                    <form method="POST" action="{{ path('cart_modif', {'id' : item.product.id}) }}"> 
-                                        <select name="quantity" class="" id="inlineFormCustomSelect">
+                                    <form action="{{ path('cart_modif', {'id' : item.product.id}) }}"> 
+                                        {# <select name="quantity" class="" id="inlineFormCustomSelect">
                                             <option selected> {{ item.quantity }}</option>
                                             {% set numberItems = item.product.quantity %}
 
@@ -40,8 +40,13 @@
                                             {% endif %}
                                            
                                             
+                                        </select> #}
+                                        <select name="quantity" class="span1" onChange="this.form.submit()" id="">
+                                        {% for i in 1..10 %}
+                                        <option value="{{i}}" {% if i == item.quantity %} selected="selected" {% endif %}>{{i}}</option>
+                                        {% endfor %}
                                         </select>
-                                        <button type="submit" class="btn btn-dark btn-sm">Modifier</button>
+                                        {# <button type="submit" class="btn btn-dark btn-sm">Modifier</button> #}
                                     </form> 
                                 </td>
                         <td>{{ item.product.prix * item.quantity }} €</td>
