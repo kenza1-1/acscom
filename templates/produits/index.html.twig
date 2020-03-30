@@ -35,11 +35,7 @@
  
 
   <!-- Page Content -->
-<<<<<<< HEAD
-    <div class="d-flex flex-wrap pt-5 mt-5">
-=======
     <div class="d-flex flex-wrap">
->>>>>>> e790ceb230970f993f6de640f0511a862194b14c
 
     {{ render(controller("App\\Controller\\CategoriesController::index")) }}
      
@@ -70,16 +66,6 @@
                 </div>
                     <a href="{{path('show',{'id':produit.id})}}" class="btn btn-promary">Plus d'infos</a>
               
-<<<<<<< HEAD
-                {% if panier[produit.id] is not defined  %}
-                <a href="{{path('ajouter',{'id' :produit.id})}}" class="btn btn-success">Ajouter au panier></a>
-               
-                {% else %}
-                  <div class='mt-5 pt-5'>
-                    <a href="{{path ('panier')}}" class="btn btn-primary">Le produit est déja dans votre panier</a>              
-                  </div>
-                {% endif %}    
-=======
                 {# {% if panier[produit.id] is not defined  %} #}
                 <a href="{{path('cart_add',{'id' :produit.id})}}" class="btn btn-success">Ajouter au panier></a>
                 {# {% else %} #}
@@ -114,7 +100,6 @@
                 {# {% else %} #}
                   {# <a href="{{path ('panier')}}" class="btn btn-primary">Le produit est déja dans votre panier</a>               #}
                 {# {% endif %}     #}
->>>>>>> e790ceb230970f993f6de640f0511a862194b14c
               </div>
             </div>
 
@@ -140,39 +125,6 @@
 
     {% endfor %}
   </div> #}
-<<<<<<< HEAD
-  <!-- Footer -->
-  <footer class="py-4 bg-dark ">
-
-    <div class='d-flex flex-wrap'>
-    
-     <div class='col-lg-4 foot'>
-        <p class=" text-white"> Informations</p>
-        <div class="list-group">
-         <a href="">CGU</a>
-         <a href="">Mentions légales</a>
-        </div>
-      </div>
-
-      <div class='col-lg-4 foot'>
-        <p class="text-white">Copyright &copy; Groupe Acs {{ "now"|date('Y') }}</p>
-      </div>
-
-      <div class='col-lg-4 foot'>
-        <p class=" text-white">Nous contacter</p>
-        <div class="list-group">
-         <a href="">Tel</a>
-         <a href="">Fax</a>
-        </div>
-      </div>
-
-
-    </div>
-   
-    <!-- /.container -->
-  </footer>
-=======
->>>>>>> e790ceb230970f993f6de640f0511a862194b14c
 </div>
 
 {# ///////////////////////////////////////////////////////////////////////////// #}
