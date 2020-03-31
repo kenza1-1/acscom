@@ -5,45 +5,53 @@
 
 {% block body %}
 
-<div class="row">
-  <div class="col-lg-6 mt-5 pt-5">
-    <div class="col-lg-9">
-      <div class="card  center-block mt-5 pt-5">
-        <img class="card-img-top img-fluid  max-width: 100%" src="{{produit.image}}" alt="">
-          <div class="card-body">
-              <h3 class="card-title">{{produit.titre}}</h3>
-              <h4>{{produit.formatedPrice | tva (produit.tva.multiplicateur)}} £</h4>
-              <p class="card-text">{{produit.description}}</p>
-              <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
-              4.0 stars
-          </div>{# <a href="#" class="btn btn-success">Acheter</a> #}
+<div class="d-flex flex-wrap">
+  <div class="col-3 mt-5 pt-5">
+    <img class="card-img-top" src="{{produit.image}}" alt="">
+  </div>
+  <div class="col-6 mt-5 pt-5">
+     <h3 class="card-title">{{produit.titre}}</h3>
+      <h4>{{produit.formatedPrice | tva (produit.tva.multiplicateur)}} €</h4>
+      <p class="card-text">{{produit.description}}</p>
+      <div>
+        Description, date de livraison, si en stock ou non, ect.
+      </div>
+  </div>
+  <div class="col-3 mt-5">
+    <div class="col-8 mt-5 card">
+      {% if panier[produit.id] is not defined  %}
+      {{ form_start(form) }}
+        <div class="col-10 offset-1 mb-3">
+          {{form_row(form.quantity, {'attr': {'placeholder':'Veillez entrer une quantité', 'class':'form-control'}})}}
+        </div>
+        <div class="col-12 mb-3">
+          {{form_row(form.ajoutPanier, {'attr': {'class':'form-control btn-primary'}})}}
+        </div>
+      {{form_end(form)}}
+      {% else %}
+        <div>
+          <a href="{{path ('panier')}}" class="btn btn-primary">Le produit est déja dans votre panier</a>              
+        </div>
+      {% endif %} 
+    </div>
+  </div>
+  <div class="col-12 mt-5">
+    <h3 class="pl-3">Autres produits proposés</h3>
+    <div class="d-flex flex-wrap">
+      <div class="col-3">
+        <img class="pl-5 img-fluid" src="https://via.placeholder.com/240x240" />
+      </div>
+      <div class="col-3">
+        <img class="pl-5 img-fluid" src="https://via.placeholder.com/240x240" />
+      </div>
+      <div class="col-3">
+        <img class="pl-5 img-fluid" src="https://via.placeholder.com/240x240" />
+      </div>
+      <div class="col-3">
+        <img class="pl-5 img-fluid" src="https://via.placeholder.com/240x240" />
       </div>
     </div>
   </div>
-
-   {% if panier[produit.id] is not defined  %}
-      {# <form action="{{path('cart_add',{'id' :produit.id})}}" class="col-lg-6 mt-5 pt-5" method="get">
-        <select name="qte" class="spanl">
-          {% for i in 1..10 %}
-            <option value="{{ i }}">{{ i }}</option>
-          {% endfor %}
-        </select>
-
-        <div>
-          <button class="btn btn-primary">Ajouter au panier</button>              
-        </div>
-
-      </form> #}
-  <div class="col-lg-6 mt-5 pt-5">
-   {{form(form)}}
-  
-  </div>
-     
-    {% else %}
-      <div class='mt-5 pt-5'>
-        <a href="{{path ('panier')}}" class="btn btn-primary">Le produit est déja dans votre panier</a>              
-      </div>
-    {% endif %}    
 </div>
           
 {% endblock %}

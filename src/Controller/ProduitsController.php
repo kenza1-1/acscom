@@ -52,7 +52,7 @@ class ProduitsController extends AbstractController
                 ->add('quantity', NumberType::class, [
                     'data' => '1'
                 ])
-                ->add('Ajouter au panier', SubmitType::class)
+                ->add('ajoutPanier', SubmitType::class)
                 ->getForm(); 
         
         $form->handleRequest($request);
