@@ -5,12 +5,12 @@
 {% block body %}
 <div class="card bg-light">
   <article class="card-body mx-auto" style="max-width: 400px; margin-top: 10vh">
-    <h4 class="card-title mt-3 text-center">Create Account</h4>
-    <p class="text-center">Get started with your free account</p>
+    <h4 class="card-title mt-3 text-center"> Inscription </h4>
+    {# <p class="text-center">Get started with your free account</p>
     <p>
       <a href="" class="btn btn-block btn-twitter"> <i class="fab fa-twitter"></i>   Login via Twitter</a>
       <a href="" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i>   Login via facebook</a>
-    </p>
+    </p> #}
     <p class="divider-text">
           <span class="bg-light">OR</span>
       </p>
@@ -22,14 +22,14 @@
           <div class="input-group-prepend">
               <span class="input-group-text"> <i class="fa fa-user"></i> </span>
           </div>
-            {{form_row(form.nom, {'attr': {'placeholder':'Name', 'class':'form-control'}})}}
+            {{form_row(form.nom, {'attr': {'placeholder':'Nom', 'class':'form-control'}})}}
           </div>
                 <!-- form-group// -->
           <div class="form-group input-group">
           <div class="input-group-prepend">
               <span class="input-group-text"> <i class="fa fa-user"></i> </span>
           </div>
-            {{form_row(form.username, {'attr': {'placeholder':'Nickname', 'class':'form-control'}})}}  
+            {{form_row(form.username, {'attr': {'placeholder':'Prénom', 'class':'form-control'}})}}  
           </div>
           <!-- form-group// -->
           <div class="form-group input-group">
@@ -42,19 +42,19 @@
             <div class="input-group-prepend">
               <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
           </div>
-            {{form_row(form.password, {'attr': {'placeholder':'Password', 'class':'form-control'}})}}  
+            {{form_row(form.password, {'attr': {'placeholder':'Mot de passe', 'class':'form-control'}})}}  
           </div> <!-- form-group// -->
           <div class="form-group input-group">
             <div class="input-group-prepend">
               <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
           </div>
-            {{form_row(form.confirm_password, {'attr': {'placeholder':'Confirm Password', 'class':'form-control'}})}}  
+            {{form_row(form.confirm_password, {'attr': {'placeholder':'Confirmation du mot de passe', 'class':'form-control'}})}}  
           </div> <!-- form-group// -->                                      
           <div class="form-group">
-              <button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
+              <button type="submit" class="btn btn-primary btn-block"> Creer compte   </button>
           {{form_end(form)}}
         </div> <!-- form-group// -->      
-        <p class="text-center">Have an account? <a href="{{path ('security_login')}}">Log In</a> </p>                                                                 
+        <p class="text-center">Vous avez un déja un compte ? <a href="{{path ('security_login')}}">Se connecter</a> </p>                                                                 
       </form>
   </article>
 </div>

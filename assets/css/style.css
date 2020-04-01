@@ -111,3 +111,9 @@
   background-color: #42AEEC;
   color: #fff;
 }
+.nav-link{
+font-family: cursive;
+font-size: 20px;
+padding-left: 30px;
+}
+.navbar-brand{font-family: cursive;}
