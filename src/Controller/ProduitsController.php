@@ -21,7 +21,7 @@ class ProduitsController extends AbstractController
     {
         $session= $request->getSession();
 
-        // $panier = $session->get('panier');
+        // $panier = $session->get('panier');b
         $produits = $repo->findByDisponibilite('1');
         if ($session->has('panier'))
             $panier = $session->get('panier');
@@ -33,7 +33,7 @@ class ProduitsController extends AbstractController
         return $this->render('produits/index.html.twig', [
             'controller_name' => 'ProduitsController',
             'produits' => $produits, 
-            'panier' => $panier
+            'panier' => $panier, 
            // 'cart' => $cartWithData
             
         ]);
@@ -89,12 +89,14 @@ class ProduitsController extends AbstractController
 
         $repo = $this->getDoctrine()->getRepository(Produits::class);
         $categorie = $repo->find($categorie);
+        // dd($categorie); 
         // if(!$categorie) throw $this->createNotFoundException("La page n'exite pas ");
         $cartWithData = $cartService->getFullCart();
         return $this->render('produits/index.html.twig', [
             //'controller_name' => 'ShowController',
             'produits' => $produits,
-            'cart' => $cartWithData
+            'cart' => $cartWithData,
+            'categorie' => $categorie
         ]);
     }
 }

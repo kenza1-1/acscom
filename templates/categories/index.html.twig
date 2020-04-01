@@ -11,26 +11,50 @@
         <h3 class="my-4 ml-3">Catégories</h3>
         <div class="list-group">
             {% for categorie in categories %}
-                <a href=" {{ path('categorieproduits', {'categorie' : categorie.id}) }}" class="list-group-item">{{categorie.nom}}</a>
+                <a href=" {{ path('categorieproduits', {'categorie' : categorie.id}) }}" 
+                class="list-group-item">{{categorie.nom}}</a>
             {% endfor %}
+            {# {% for categorie in categories %}
+                
+                {% if categorie.id != maincategorie %}
+                    {% set data = '' %}
+                {% endif %}
+
+                {% if categorie.id == maincategorie %}
+                    {% set data = 'active' %}
+                {% endif %}
+                
+                <a href=" {{ path('categorieproduits', {'categorie' : categorie.id}) }}" 
+                class="list-group-item {% if data is defined %}{{ data }}{% endif %}">{{categorie.nom}}</a>
+            
+            {% endfor %} #}
                
         </div> 
 
     </div>
+    
     <div class="col-md-2 offset-md-10 position-absolute " style="margin-right: 10vh">
         {% if not cart is empty %}
         
-            <h3 class="my-4 ml-3">Panier</h3>
+            <h3 class="my-4 ml-3"><a href="{{ path('cart_index') }}">Panier</a></h3>
             <div class="list-group ">
                 {% for item in cart %}
 
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <a href="{{path('show',{'id':item.product.id})}}" class="list-group-item list-group-item-action flex-column align-items-start">
                         <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">{{ item.product.titre }}</h5>
-                        <small class="text-muted">x {{ item.quantity }}</small>
+                            <div class="row">
+                                <h5 class="mb-1">{{ item.product.titre }}</h5>
+                                <small class="text-muted ml-1"> <b> x {{ item.quantity }}</b></small>
+
+                            </div>
+                            <p class="mb-1">{{ item.product.prix * item.quantity }} €</p>
                         </div>
-                        <p class="mb-1">{{ item.product.prix * item.quantity }} €</p>
-                        <img src="{{ item.product.image }}" alt="" style="height: 6vh">
+                        <div class="d-flex w-100 justify-content-between">
+                            <img src="{{ item.product.image }}" alt="" style="height: 6vh;">
+                            <a href="{{ path('cart_remove', {'id': item.product.id}) }}" class="btn btn-danger btn-sm position-relative" style="height: 15%; z-index:100; top:2.6rem; right:2rem;">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </div>
                     </a>
 
                 {% endfor %}
