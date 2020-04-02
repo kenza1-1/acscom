@@ -9,25 +9,11 @@
     <div class="col-md-2 position-absolute">
 
         <h3 class="my-4 ml-3">Catégories</h3>
-        <div class="list-group">
+        <div class="blackLink list-group">
             {% for categorie in categories %}
                 <a href=" {{ path('categorieproduits', {'categorie' : categorie.id}) }}" 
                 class="list-group-item">{{categorie.nom}}</a>
             {% endfor %}
-            {# {% for categorie in categories %}
-                
-                {% if categorie.id != maincategorie %}
-                    {% set data = '' %}
-                {% endif %}
-
-                {% if categorie.id == maincategorie %}
-                    {% set data = 'active' %}
-                {% endif %}
-                
-                <a href=" {{ path('categorieproduits', {'categorie' : categorie.id}) }}" 
-                class="list-group-item {% if data is defined %}{{ data }}{% endif %}">{{categorie.nom}}</a>
-            
-            {% endfor %} #}
                
         </div> 
 
@@ -36,7 +22,7 @@
     <div class="col-md-2 offset-md-10 position-absolute " style="margin-right: 10vh">
         {% if not cart is empty %}
         
-            <h3 class="my-4 ml-3"><a href="{{ path('cart_index') }}">Panier</a></h3>
+            <h3 class="blackLink my-4 ml-3"><a href="{{ path('cart_index') }}">Panier</a></h3>
             <div class="list-group ">
                 {% for item in cart %}
 
@@ -51,13 +37,14 @@
                         </div>
                         <div class="d-flex w-100 justify-content-between">
                             <img src="{{ item.product.image }}" alt="" style="height: 6vh;">
-                            <a href="{{ path('cart_remove', {'id': item.product.id}) }}" class="btn btn-danger btn-sm position-relative" style="height: 15%; z-index:100; top:2.6rem; right:2rem;">
+                        </div>
+                            <a href="{{ path('cart_remove', {'id': item.product.id}) }}" class="btn btn-danger btn-sm position-relative" style="height: 15%;width: 15%; z-index:100; left: 11.1rem; bottom: 3rem; ">
                                 <i class="fas fa-trash"></i>
                             </a>
-                        </div>
                     </a>
 
                 {% endfor %}
+                <a type="button" type="button" href="{{ path('cart_index') }}" class="btn btn-primary offset-md-4" style="width: 60%;">Passer à l'achat</a>
             </div>
 
         {% endif %}
