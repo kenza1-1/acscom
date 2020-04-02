@@ -3,6 +3,17 @@
  * Copyright 2013-2019 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-shop-homepage/blob/master/LICENSE)
  */
+
+ .blackLink a{
+  /* text-decoration: none !important; */
+  color: #111 !important;
+}
+
+.blackLink a:hover{
+  /* text-decoration: none !important; */
+  color: #111 !important;
+}
+
  .global {
     padding-top: 56px;
   }

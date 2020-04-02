@@ -24,17 +24,13 @@
               <div class="card h-100">
                 <a href="{{path('show',{'id':produit.id})}}"><img class="card-img-top" src="{{produit.image}}" width='300' height='250' alt=""></a>
                 <div class="card-body">
-                  <h4 class="card-title">
+                  <h4 class="blackLink card-title">
                     <a href="{{path('show',{'id':produit.id})}}">{{produit.titre}}</a>
                   </h4>
                   <h5>{{produit.formatedPrice | tva (produit.tva.multiplicateur) }} €</h5>
                   <p class="card-text">{{produit.description}}</p>
                 </div>
-
-                <form action="panier.php">
-                
-                </form>
-                    <a href="{{path('show',{'id':produit.id})}}" class="btn btn-promary">Plus d'infos</a>
+                    <a href="{{path('show',{'id':produit.id})}}" class="btn btn-primary my-2">Plus d'infos</a>
               
                 {# {% if panier[produit.id] is not defined  %} #}
                 <a href="{{path('cart_add',{'id' :produit.id})}}" class="btn btn-success">Ajouter au panier></a>
@@ -45,7 +41,6 @@
             </div>
 
           {% endfor %}
-          
 
         </div>
         <!-- /.row -->
