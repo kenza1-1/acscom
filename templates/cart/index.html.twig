@@ -1,77 +1,135 @@
 {% extends 'base.html.twig' %}
+{% set totalHT = 0  %}
+{% set totalTTC = 0 %}
+{% set tva =0 %}
 
 {% block title %}Panier{% endblock %}
 {% block body %}
-    <div>
-        <h1>Votre Panier</h1>
-    </div>
-
-    {% if items |length > 0 %}
-        <table class="table col-md-10 text-right">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Produit</th>
-                    <th>Quantité</th>
-                    <th>Prix</th>
-                    <th>Total</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for item in items %}
+<div class="container mb-4 mt-5 pt-5">
+    <div class="row">
+    
+        {# {% for flashMessage in app.session.flashBag.get('success') %}
+            <div class="alert alert-success"> {{ flashMessage }}</div> #}
+        {# {% endfor %} #}
+        <div class="col-12">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col"> </th>
+                            <th scope="col">Produit</th>
+                            <th scope="col">disponibilié</th>
+                            <th scope="col" class="text-center">Quantité</th>
+                            <th scope="col" class="text-right">Prix unitaire</th>
+                            <th scope="col" class="text-right">Total HT</th>
+                            <th> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {%  if items |length == 0 %}
                     <tr>
-                        <td><img style="width: 10vw;" class="img-responsive" src="{{ item.product.image }}" alt=""></td>
-                        <td><a href="/categories/{{ item.product.id }}">{{ item.product.titre }}</a></td>
-                                <td>
-                                    <form action="{{ path('cart_modif', {'id' : item.product.id}) }}"> 
-                                        {# <select name="quantity" class="" id="inlineFormCustomSelect">
-                                            <option selected> {{ item.quantity }}</option>
-                                            {% set numberItems = item.product.quantity %}
+                      <td colspan="4"><center> Aucun article dans votre panier</center> </td>
+                    </tr>
+                    {% endif %}
 
-                                            {% if numberItems <= 10 %}
-                                             {% for i in 1..item.product.quantity %}
-                                            <option value="{{i}}">{{i}}</option>
-                                            {% endfor %}
-                                            {% else %}
-                                                 {% for i in 1..10 %}
-                                            <option value="{{i}}">{{i}}</option>
-                                            {% endfor %}
-                                            {% endif %}
-                                           
-                                            
-                                        </select> #}
-                                        <select name="quantity" class="span1" onChange="this.form.submit()" id="">
+                        {% for item in items %}
+                            <tr>
+                                <form action="{{path('cart_modif', {'id' : item.product.id})}}" method='get'>
+                                    <td><img src="{{item.product.image}}" width="50" height="50" /> </td>
+                                    <td>{{item.product.titre }}</td>
+                                    <td>En stock</td>
+                                    <td>
+                                    {# <select name="qte" class="span1" onChange="this.form.submit()" id="">
+                                    {% for i in 1..10 %}
+                                    <option value="{{i}}" {% if i == panier[produit.id] %} selected="selected" {% endif %}>{{i}}</option>
+                                    {% endfor %} #}
+
+                                     <select name="quantity" class="span1" onChange="this.form.submit()" >
                                         {% for i in 1..10 %}
                                         <option value="{{i}}" {% if i == item.quantity %} selected="selected" {% endif %}>{{i}}</option>
                                         {% endfor %}
-                                        </select>
-                                        {# <button type="submit" class="btn btn-dark btn-sm">Modifier</button> #}
-                                    </form> 
-                                </td>
-                        <td>{{ item.product.prix * item.quantity }} €</td>
-                        <td>
-                            <a href="{{ path('cart_remove', {'id': item.product.id}) }}" class="btn btn-danger btn-sm">
-                                <i class="fas fa-trash"></i>
-                            </a>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-            <tfoot>
-                <tr>
-                    <th colspan="4" class="text-right">Total : 
-                    </th>
-                    <th>{{ total }} €</th>
-                    <th></th>
-                </tr>
+                                    {# <a href="{{ path ('supprimer', {'id' : produit.id})}}"><i class="icoon-trash"></i></a> #}
+                                    </select>
+                                    </td>
+                                    <td class="text-right">{{item.product.prix}} €</td>
+                                    <td class="text-right">{{item.product.prix * item.quantity}}€</td>
+                                    {# <a href="{{ path ('supprimer', {'id' : produit.id})}}"><i class=" fa fa-trash"></i></a>
+                                    <td class="text-right"> <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td> #}
+                                    <td><a href="{{ path ('cart_remove', {'id' : item.product.id})}}"><i class=" fa fa-trash"></i></a></td>
+                                </form>
+                            </tr>
+                            
+                              {% set totalHT = totalHT + (item.product.prix * item.quantity  ) %}
+                              {% set totalTTC = totalTTC + (item.product.prix * item.quantity ) | tva (item.product.tva.multiplicateur)   %}
+                              
 
-            </tfoot>
-        </table>
-                <a href="{{ path ('command') }}" type="button" class="btn btn-primary btn-block">Valider la commande sur votre écran 21/9</a>
-    {% else %}
-        <div>
-            <h1>Votre Panier est vide !</h1>
+                        {% endfor %}
+                        {# <tr>
+                            <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
+                            <td>Product Name Toto</td>
+                            <td>In stock</td>
+                            <td><input class="form-control" type="text" value="1" /></td>
+                            <td class="text-right">33,90 €</td>
+                            <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
+                        </tr>
+                        <tr>
+                            <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
+                            <td>Product Name Titi</td>
+                            <td>In stock</td>
+                            <td><input class="form-control" type="text" value="1" /></td>
+                            <td class="text-right">70,00 €</td>
+                            <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
+                        </tr> #}
+                    {% if items |length != 0 %}
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Total HT :</td>
+                            <td class="text-right">{{totalHT}}€</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>TVA</td>
+                            <td class="text-right">{{(totalTTC)-(totalHT)}} €</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><strong>Total TTC:</strong></td>
+                            <td class="text-right"><strong>{{totalTTC}} €</strong></td>
+                        </tr>
+                    {% endif %}    
+                    </tbody>
+                </table>
+            </div>
         </div>
-    {% endif %}
+        <div class="col mb-2">
+            <div class="row">
+                <div class="col-sm-12  col-md-6">
+                    <a href="{{path('produits')}}"><button class="btn btn-block btn-primary">Continue Shopping</button></a>
+                </div>
+                {% if items|length != 0 %}
+
+                    <div class="col-sm-12 col-md-6 text-right">
+                    <a href="{{path('command')}}"><button class="btn btn-block btn-primary">Valider le Panier</button></a>
+
+                     {# <a href="{{path('command')}}"><button class="btn btn-block btn-primary">Valider le Panier</button></a> #}
+
+
+                    </div>
+                {% endif %}    
+            </div>
+        </div>
+    </div>
+</div>
+{# ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// #}
+{# ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// #}
+    
 {% endblock %}

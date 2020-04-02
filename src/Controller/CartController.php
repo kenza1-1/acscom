@@ -39,7 +39,8 @@ class CartController extends AbstractController {
        
         $cartService->remove($id);
 
-        return $this->redirectToRoute("produits");
+        return $this->redirectToRoute("cart_index");
+
     }
 
     /**
