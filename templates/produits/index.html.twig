@@ -30,10 +30,35 @@
                   <h5>{{produit.formatedPrice | tva (produit.tva.multiplicateur) }} €</h5>
                   <p class="card-text">{{produit.description}}</p>
                 </div>
+                    <a href="{{path('show',{'id':produit.id})}}" class="btn btn-primary my-2">Plus d'infos</a>
+              
+                {# {% if panier[produit.id] is not defined  %} #}
+                <a href="{{path('cart_add',{'id' :produit.id})}}" class="btn btn-success">Ajouter au panier></a>
+                {# {% else %} #}
+                  {# <a href="{{path ('panier')}}" class="btn btn-primary">Le produit est déja dans votre panier</a>               #}
+                {# {% endif %}     #}
+              </div>
+            </div>
+
+          {% endfor %}{% for produit in produits %}
+
+            <div class="col-lg-4 col-md-6 mb-4 ">
+              <div class="card h-100">
+                <a href="{{path('show',{'id':produit.id})}}"><img class="card-img-top" src="{{produit.image}}" width='300' height='250' alt=""></a>
+                <div class="card-body">
+                  <h4 class="card-title">
+                    <a href="{{path('show',{'id':produit.id})}}">{{produit.titre}}</a>
+                  </h4>
+                  <h5>{{produit.formatedPrice | tva (produit.tva.multiplicateur) }} £</h5>
+                  <p class="card-text">{{produit.description}}}}</p>
+                </div>
 
                 <form action="panier.php">
                 
                 </form>
+                <div class="card-footer">
+                  <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                </div>
                     <a href="{{path('show',{'id':produit.id})}}" class="btn btn-promary">Plus d'infos</a>
               
                 {# {% if panier[produit.id] is not defined  %} #}
